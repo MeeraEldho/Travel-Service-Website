@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Agency - Explore Horizons</title>
+  <!-- Font Awesome CDN for Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.5;
+      color: #8b6d47; /* Mild Brown */
+      scroll-behavior: smooth;
+      background-color: #fef7e5; /* Mild Yellow */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, #e4c08b, #d19a64); /* Mild Yellow to Mild Brown */
+      padding: 15px 20px;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      color: #fff;
+      font-size: 1em;
+      padding: 5px 10px;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(201, 149, 76, 0.705); /* Mild Orange */
+      border-radius: 5px;
+      transform: scale(1.05);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #f9d684, #f7b45e); /* Mild Yellow to Mild Orange */
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .hero h2 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .hero .btn {
+      background: #f3a847; /* Mild Orange */
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .hero .btn:hover {
+      background: #d88f34; /* Darker Mild Orange */
+    }
+
+    /* Section Styling */
+    section {
+      padding: 30px 20px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    section h2 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #c78a4e; /* Mild Brown */
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: #d4b394; /* Mild Brown */
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: left;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.4em;
+      color: #f1b94f; /* Mild Yellow */
+      margin: 10px 0;
+    }
+
+    .card p {
+      font-size: 1em;
+      color: #5d3d2e; /* Mild Brown */
+    }
+
+    /* Collapsible Section */
+    .collapsible {
+      background-color: #c78a4e; /* Mild Brown */
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      text-align: left;
+      font-size: 1.2em;
+      transition: background 0.3s;
+    }
+
+    .collapsible:hover {
+      background-color: #f1c56e; /* Mild Yellow */
+    }
+
+    .content-collapsible {
+      padding: 10px;
+      display: none;
+      background-color: #f1d48f; /* Mild Yellow */
+    }
+
+    .testimonials {
+      background: #fef7e5; /* Mild Yellow */
+    }
+
+    .testimonial {
+      font-size: 1.1em;
+      font-style: italic;
+      margin: 20px auto;
+      max-width: 700px;
+      color: #5d3d2e; /* Mild Brown */
+    }
+
+    /* Contact Form */
+    .contact {
+      background: linear-gradient(135deg, #f7b45e, #f3a847); /* Mild Orange to Mild Yellow */
+      color: white;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact input, .contact textarea, .contact button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    .contact input, .contact textarea {
+      background: #fff;
+      color: #333;
+    }
+
+    .contact button {
+      background: #c78a4e; /* Mild Brown */
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact button:hover {
+      background: #d88f34; /* Darker Mild Orange */
+    }
+
+    /* Footer */
+    footer {
+      background: #5d3d2e; /* Mild Brown */
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    /* Dark Mode Styles */
+    :root {
+      --background-color: #fef7e5; /* Mild Yellow */
+      --text-color: #8b6d47; /* Mild Brown */
+      --card-bg: #d4b394; /* Mild Brown */
+      --header-bg: linear-gradient(135deg, #e4c08b, #d19a64); /* Mild Yellow to Mild Brown */
+      --button-bg: #f3a847; /* Mild Orange */
+    }
+
+    body.dark-mode {
+      --background-color: #3e2a3d; /* Dark Brown */
+      --text-color: #f1e0b4; /* Light Yellow */
+      --card-bg: #2b1d2d; /* Darker Brown */
+      --header-bg: linear-gradient(135deg, #d19a64, #e4c08b); /* Inverse Gradient */
+      --button-bg: #e4c08b; /* Light Yellow */
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+    }
+
+    .card {
+      background: var(--card-bg);
+    }
+
+    header {
+      background: var(--header-bg);
+    }
+
+    .hero .btn, .contact button {
+      background: var(--button-bg);
+    }
+
+    /* Toggle Button Styles */
+    .toggle-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 40px;
+      height: 40px;
+      background: #f3a847; /* Mild Orange */
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .toggle-btn.dark {
+      background: #f1b94f; /* Mild Yellow */
+    }
+
+    .toggle-btn .fa-suitcase {
+      font-size: 18px;
+      color: #fff;
+      transition: transform 0.3s;
+    }
+
+    .toggle-btn.dark .fa-suitcase {
+      transform: rotate(180deg);
+    }
+
+    /* Animation for Text */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Explore Horizons</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#packages">Packages</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>
+    <h2>Travel Beyond Boundaries</h2>
+    <p>Your next adventure is just a click away!</p>
+    <button class="btn">Get Started</button>
+  </div>
+</div>
+
+<section id="about">
+  <h2>About Us</h2>
+  <p>Explore Horizons is dedicated to providing world-class travel experiences to explorers and dreamers worldwide.</p>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="content">
+    <div class="card">
+      <h3>Custom Tours</h3>
+      <p>Personalized itineraries crafted for your preferences.</p>
+    </div>
+    <div class="card">
+      <h3>Accommodation</h3>
+      <p>Stay at the finest hotels around the world.</p>
+    </div>
+    <div class="card">
+      <h3>24/7 Support</h3>
+      <p>Reliable support to ensure a smooth journey.</p>
+    </div>
+  </div>
+</section>
+
+<section id="packages">
+  <h2>Travel Packages</h2>
+  <button class="collapsible">View Travel Packages</button>
+  <div class="content-collapsible">
+    <div class="card">
+      <h3>Maldives Escape</h3>
+      <p>5 Days - $1200</p>
+    </div>
+    <div class="card">
+      <h3>European Tour</h3>
+      <p>10 Days - $2500</p>
+    </div>
+    <div class="card">
+      <h3>Safari Adventure</h3>
+      <p>7 Days - $1800</p>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="testimonials">
+  <h2>Testimonials</h2>
+  <p class="testimonial">"This agency turned my dream vacation into reality!" - Sarah J.</p>
+  <p class="testimonial">"Amazing service and unforgettable experiences!" - Tom R.</p>
+</section>
+
+<section id="contact" class="contact">
+  <h2>Contact Us</h2>
+  <form>
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<footer>
+  <p>&copy; 2024 Explore Horizons. All Rights Reserved.</p>
+</footer>
+
+<!-- Dark Mode Toggle Button -->
+<div class="toggle-btn" id="toggleTheme">
+  <i class="fas fa-suitcase"></i>
+</div>
+
+<script>
+  const toggleBtn = document.getElementById('toggleTheme');
+  const body = document.body;
+
+  toggleBtn.addEventListener('click', () => {
+    const isDark = body.classList.toggle('dark-mode');
+    toggleBtn.classList.toggle('dark', isDark);
+  });
+
+  // Collapsible Section
+  const collapsible = document.querySelector('.collapsible');
+  const content = document.querySelector('.content-collapsible');
+
+  collapsible.addEventListener('click', () => {
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  });
+</script>
+
+</body>
+</html>
